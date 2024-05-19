@@ -10,7 +10,7 @@ config = {
     "mouseMovementPattern": 0, # Diagonal
     "randomIntervalStart": 0,
     "randomIntervalStop": 0,
-    "sleepSeconds": 3,
+    "sleepSeconds": 60,
     "mouseDirection": 0,
 }
 
@@ -22,7 +22,7 @@ def parseArguments():
 
     parser.add_argument("-s", "--seconds", type=int, help="Time to wait before acting again (in seconds). Default is 60 seconds.")
     parser.add_argument("-p", "--pixels", type=int, help="Pixels to move the mouse. Default is 1.")
-    parser.add_argument("-c", "--circular", action='store_true', help="Move mouse in a circular pattern.")
+    parser.add_argument("-c", "--circular", action='store_true', help="Move mouse in a circular pattern. Default is Diagonal")
     parser.add_argument("-m", "--mode", help="Action mode: 'keyboard', 'mouse', 'both', or 'scroll'. Default is 'mouse'.")
     parser.add_argument("-r", "--random", type=int, nargs=2, help="Random interval range in seconds (start stop).")
 
