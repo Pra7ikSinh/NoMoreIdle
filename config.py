@@ -1,20 +1,20 @@
 import argparse
-from utils import get_current_timestamp
+from utils import getCurrentTimestamp
 
 config = {
-    "move_mouse": False,
-    "scroll_action": False,
-    "press_shift_key": False,
-    "random_mode": False,
-    "pixels_to_move": 60,
-    "mouse_movement_pattern": 0,
-    "rand_interval_start": 0,
-    "rand_interval_stop": 0,
-    "move_interval_seconds": 3,
-    "mouse_direction": 0,
+    "moveMouse": False,
+    "scrollAction": False,
+    "pressShiftKey": False,
+    "randomMode": False,
+    "pixelsToMove": 60,
+    "mouseMovementPattern": 0,
+    "randomIntervalStart": 0,
+    "randomIntervalStop": 0,
+    "sleepSeconds": 3,
+    "mouseDirection": 0,
 }
 
-def parse_arguments():
+def parseArguments():
     """Parse and handle command line arguments."""
     parser = argparse.ArgumentParser(
         description="Simulates user activity to prevent idle state detection."
@@ -29,49 +29,49 @@ def parse_arguments():
     args = parser.parse_args()
 
     if args.seconds:
-        config["move_interval_seconds"] = args.seconds
+        config["sleepSeconds"] = args.seconds
 
     if args.pixels:
-        config["pixels_to_move"] = args.pixels
+        config["pixelsToMove"] = args.pixels
 
     if args.circular:
-        config["mouse_movement_pattern"] = 1
+        config["mouseMovementPattern"] = 1
 
     if args.random:
         start, stop = args.random
         if start > stop:
             print("Error: The start of the random interval must be less than the stop.")
             exit()
-        config["rand_interval_start"] = start
-        config["rand_interval_stop"] = stop
-        config["random_mode"] = True
+        config["randomIntervalStart"] = start
+        config["randomIntervalStop"] = stop
+        config["randomMode"] = True
 
     mode = args.mode
     if mode == "keyboard":
-        config["press_shift_key"] = True
+        config["pressShiftKey"] = True
     elif mode == "mouse":
-        config["move_mouse"] = True
+        config["moveMouse"] = True
     elif mode == "both":
-        config["press_shift_key"] = config["move_mouse"] = True
+        config["pressShiftKey"] = config["moveMouse"] = True
     elif mode == "scroll":
-        config["scroll_action"] = True
+        config["scrollAction"] = True
     else:
-        config["move_mouse"] = True
+        config["moveMouse"] = True
 
-    print_configuration()
+    printConfiguration()
 
-def print_configuration():
+def printConfiguration():
     """Prints the current configuration."""
     print("--------")
-    if config["press_shift_key"]:
-        print(get_current_timestamp(), "Keyboard action enabled")
-    if config["scroll_action"]:
-        print(get_current_timestamp(), "Mouse scroll action enabled")
-    if config["move_mouse"]:
-        movement_type = "circularly" if config["mouse_movement_pattern"] == 1 else "diagonally"
-        print(get_current_timestamp(), f"Mouse movement enabled: {config['pixels_to_move']} pixels {movement_type}")
-    if config["random_mode"]:
-        print(get_current_timestamp(), f"Random interval enabled: {config['rand_interval_start']} - {config['rand_interval_stop']} seconds")
+    if config["pressShiftKey"]:
+        print(getCurrentTimestamp(), "Keyboard action enabled")
+    if config["scrollAction"]:
+        print(getCurrentTimestamp(), "Mouse scroll action enabled")
+    if config["moveMouse"]:
+        movementType = "circularly" if config["mouseMovementPattern"] == 1 else "diagonally"
+        print(getCurrentTimestamp(), f"Mouse movement enabled: {config['pixelsToMove']} pixels {movementType}")
+    if config["randomMode"]:
+        print(getCurrentTimestamp(), f"Random interval enabled: {config['randomIntervalStart']} - {config['randomIntervalStop']} seconds")
     else:
-        print(get_current_timestamp(), f"Fixed interval: {config['move_interval_seconds']} seconds")
+        print(getCurrentTimestamp(), f"Fixed interval: {config['sleepSeconds']} seconds")
     print("--------")

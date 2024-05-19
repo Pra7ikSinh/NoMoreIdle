@@ -1,41 +1,41 @@
 from pynput.mouse import Controller as MouseController
 from pynput.keyboard import Key, Controller as KeyboardController
 from config import config
-from utils import get_current_timestamp
+from utils import getCurrentTimestamp
 
 # Initialize controllers
 mouse = MouseController()
 keyboard = KeyboardController()
 
-def move_mouse():
+def moveMouse():
     """Moves the mouse in a specified pattern."""
-    delta_x = config["pixels_to_move"] if config["mouse_direction"] in (0, 3) else -config["pixels_to_move"]
-    delta_y = config["pixels_to_move"] if config["mouse_direction"] in (0, 1) else -config["pixels_to_move"]
+    delta_x = config["pixelsToMove"] if config["mouseDirection"] in (0, 3) else -config["pixelsToMove"]
+    delta_y = config["pixelsToMove"] if config["mouseDirection"] in (0, 1) else -config["pixelsToMove"]
 
-    new_position = (mouse.position[0] + delta_x, mouse.position[1] + delta_y)
-    mouse.position = new_position
+    newPosition = (mouse.position[0] + delta_x, mouse.position[1] + delta_y)
+    mouse.position = newPosition
 
-    config["mouse_direction"] = (config["mouse_direction"] + config["mouse_movement_pattern"]) % 4
+    config["mouseDirection"] = (config["mouseDirection"] + config["mouseMovementPattern"]) % 4
 
-    print(get_current_timestamp(), f"Moved mouse to: {mouse.position}")
+    print(getCurrentTimestamp(), f"Moved mouse to: {mouse.position}")
 
-def perform_scroll():
+def performScroll():
     """Scrolls the mouse wheel."""
     mouse.scroll(0, -2)
-    print(get_current_timestamp(), "Mouse wheel scrolled")
+    print(getCurrentTimestamp(), "Mouse wheel scrolled")
 
-def press_shift():
+def pressShift():
     """Presses and releases the Shift key."""
     keyboard.press(Key.shift)
     keyboard.release(Key.shift)
-    print(get_current_timestamp(), "Shift key pressed")
+    print(getCurrentTimestamp(), "Shift key pressed")
 
-def execute_action():
+def executeAction():
     """Executes the configured action to simulate user activity."""
-    print(get_current_timestamp(), "Simulating user activity")
-    if config["move_mouse"]:
-        move_mouse()
-    if config["scroll_action"]:
-        perform_scroll()
-    if config["press_shift_key"]:
-        press_shift()
+    print(getCurrentTimestamp(), "Simulating user activity")
+    if config["moveMouse"]:
+        moveMouse()
+    if config["scrollAction"]:
+        performScroll()
+    if config["pressShiftKey"]:
+        pressShift()

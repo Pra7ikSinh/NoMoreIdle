@@ -1,31 +1,31 @@
 import time
 import random
 from pynput.mouse import Controller as MouseController
-from config import parse_arguments, config
-from actions import execute_action
-from utils import get_current_timestamp
+from config import parseArguments, config
+from actions import executeAction
+from utils import getCurrentTimestamp
 
 def main():
-    parse_arguments()
+    parseArguments()
     mouse = MouseController()
-    last_position = mouse.position
+    lastPosition = mouse.position
 
     try:
         while True:
-            current_position = mouse.position
-            if current_position == last_position:
-                execute_action()
+            currentPosition = mouse.position
+            if currentPosition == lastPosition:
+                executeAction()
             else:
-                print(get_current_timestamp(), "User activity detected")
-            last_position = current_position
+                print(getCurrentTimestamp(), "User activity detected")
+            lastPosition = currentPosition
 
-            if config["random_mode"]:
-                sleep_time = random.randint(config["rand_interval_start"], config["rand_interval_stop"])
+            if config["randomMode"]:
+                sleepTime = random.randint(config["randomIntervalStart"], config["randomIntervalStop"])
             else:
-                sleep_time = config["move_interval_seconds"]
+                sleepTime = config["sleepSeconds"]
 
-            print(get_current_timestamp(), f"Sleeping for {sleep_time} seconds")
-            time.sleep(sleep_time)
+            print(getCurrentTimestamp(), f"Sleeping for {sleepTime} seconds")
+            time.sleep(sleepTime)
             print("--------")
 
     except KeyboardInterrupt:

@@ -1,5 +1,5 @@
 from datetime import datetime
 
-def get_current_timestamp():
+def getCurrentTimestamp():
     """Returns the current time formatted as HH:MM:SS."""
     return datetime.now().strftime("%H:%M:%S")
