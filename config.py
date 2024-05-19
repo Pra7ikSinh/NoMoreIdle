@@ -6,8 +6,8 @@ config = {
     "scrollAction": False,
     "pressShiftKey": False,
     "randomMode": False,
-    "pixelsToMove": 60,
-    "mouseMovementPattern": 0,
+    "pixelsToMove": 1,
+    "mouseMovementPattern": 0, # Diagonal
     "randomIntervalStart": 0,
     "randomIntervalStop": 0,
     "sleepSeconds": 3,
