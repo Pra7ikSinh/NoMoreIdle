@@ -20,8 +20,8 @@ A powerful Python script designed to prevent your computer from going idle. This
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/anti-idle-script.git
-    cd anti-idle-script
+    git clone https://github.com/Pra7ikSinh/NoMoreIdle.git
+    cd NoMoreIdle
     ```
 
 2. Install the required libraries:
@@ -34,7 +34,7 @@ A powerful Python script designed to prevent your computer from going idle. This
 Run the script with the desired options:
 
 ```bash
- python main.py [OPTIONS]
+ python no-more-idle.py [OPTIONS]
 ```
 
 ## Features
@@ -50,37 +50,37 @@ Run the script with the desired options:
 
 1. Default Usage: Move the mouse diagonally every 60 seconds by 1 pixel.
     ```bash
-    python main.py
+    python no-more-idle.py
     ```
 
 2. Custom Interval and Pixels: Move the mouse diagonally every 30 seconds by 5 pixels.
     ```bash
-    python main.py -s 30 -p 5
+    python no-more-idle.py -s 30 -p 5
     ```
 3. Circular Mouse Movement: Move the mouse in a circular pattern every 45 seconds.
     ```bash
-    python main.py -s 30 -p 5
+    python no-more-idle.py -s 30 -p 5
     ```
 4. Keyboard Mode: Press and release the Shift key every 60 seconds.
     ```bash
-    python main.py -m keyboard
+    python no-more-idle.py -m keyboard
     ```
 5. Scroll Mode: Scroll the mouse wheel every 50 seconds.
     ```bash
-    python main.py -m scroll -s 50
+    python no-more-idle.py -m scroll -s 50
     ```
 6. Random Interval: Move the mouse in a random interval between 30 to 90 seconds.
     ```bash
-    python main.py -r 30 90
+    python no-more-idle.py -r 30 90
     ```
 7. Use All Features
     ```bash
-    python main.py -s 30 -p 5 -c -m both -r 10 60
+    python no-more-idle.py -s 30 -p 5 -c -m both -r 10 60
     ```
 
 ## License
 
-This project is licensed under the MIT (Licence)[www.google.com]. See the LICENSE file for details.
+This project is licensed under the MIT [License](https://github.com/Pra7ikSinh/NoMoreIdle/blob/master/LICENSE). See the LICENSE file for details.
 
 ## Contributing
 
