@@ -1,0 +1,24 @@
+name: no-more-idle
+base: core22
+version: '1.0.0'
+summary: 'NoMoreIdle: Prevent idle state; automate keyboard/mouse.'
+description: |
+  A powerful Python script designed to prevent your computer from going idle. This script simulates user activity by moving the mouse, scrolling, or pressing keys at set intervals. It is ideal for keeping your system active during extended periods of inactivity.
+grade: stable
+confinement: strict
+
+parts:
+  no-more-idle:
+    plugin: python
+    source: .
+    stage-packages:
+      - python3
+      - python3-pip
+    python-packages:
+      - pynput
+
+apps:
+  keep-presence:
+    command: python3 no-more-idle.py
+    plugs:
+      - x11
