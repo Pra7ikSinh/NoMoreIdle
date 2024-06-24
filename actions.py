@@ -9,7 +9,7 @@ mouse = MouseController()
 keyboard = KeyboardController()
 
 def moveMouse():
-    """Moves the mouse in a specified pattern."""
+    """Moves the mouse in a specified pattern based on the configuration settings."""
     delta_x = config["pixelsToMove"] if config["mouseDirection"] in (0, 3) else -config["pixelsToMove"]
     delta_y = config["pixelsToMove"] if config["mouseDirection"] in (0, 1) else -config["pixelsToMove"]
 
