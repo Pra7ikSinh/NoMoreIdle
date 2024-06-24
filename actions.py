@@ -1,3 +1,4 @@
+import time
 from pynput.mouse import Controller as MouseController
 from pynput.keyboard import Key, Controller as KeyboardController
 from config import config
@@ -30,6 +31,18 @@ def pressShift():
     keyboard.release(Key.shift)
     print(getCurrentTimestamp(), "Shift key pressed")
 
+
+def change_window():
+    """Simulates pressing Alt + Tab to change windows."""
+    keyboard.press(Key.alt)
+    for _ in range(config["tab_count"]):
+        keyboard.press(Key.tab)
+        keyboard.release(Key.tab)
+        time.sleep(0.1)
+    keyboard.release(Key.alt)
+    print(getCurrentTimestamp(), f"Alt+Tab pressed {config['tab_count']} time(s) to change windows")
+    config["tab_count"] += 1
+
 def executeAction():
     """Executes the configured action to simulate user activity."""
     print(getCurrentTimestamp(), "Simulating user activity")
@@ -39,3 +52,6 @@ def executeAction():
         performScroll()
     if config["pressShiftKey"]:
         pressShift()
+    if config["change_window"]:
+        change_window()
+

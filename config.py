@@ -12,6 +12,8 @@ config = {
     "randomIntervalStop": 0,
     "sleepSeconds": 60,
     "mouseDirection": 0,
+    "change_window": False,
+    "tab_count": 1,
 }
 
 def parseArguments():
@@ -23,7 +25,7 @@ def parseArguments():
     parser.add_argument("-s", "--seconds", type=int, help="Time to wait before acting again (in seconds). Default is 60 seconds.")
     parser.add_argument("-p", "--pixels", type=int, help="Pixels to move the mouse. Default is 1.")
     parser.add_argument("-c", "--circular", action='store_true', help="Move mouse in a circular pattern. Default is Diagonal")
-    parser.add_argument("-m", "--mode", help="Action mode: 'keyboard', 'mouse', 'both', or 'scroll'. Default is 'mouse'.")
+    parser.add_argument("-m", "--mode", help="Action mode: 'keyboard', 'mouse', 'both','scroll', or 'changeWindow'. Default is 'mouse'.")
     parser.add_argument("-r", "--random", type=int, nargs=2, help="Random interval range in seconds (start stop).")
 
     args = parser.parse_args()
@@ -55,6 +57,8 @@ def parseArguments():
         config["pressShiftKey"] = config["moveMouse"] = True
     elif mode == "scroll":
         config["scrollAction"] = True
+    elif mode == "changeWindow":
+        config["change_window"] = True
     else:
         config["moveMouse"] = True
 
@@ -70,6 +74,8 @@ def printConfiguration():
     if config["moveMouse"]:
         movementType = "circularly" if config["mouseMovementPattern"] == 1 else "diagonally"
         print(getCurrentTimestamp(), f"Mouse movement enabled: {config['pixelsToMove']} pixels {movementType}")
+    if config["change_window"]:
+        print(getCurrentTimestamp(), "Change windows action enabled")
     if config["randomMode"]:
         print(getCurrentTimestamp(), f"Random interval enabled: {config['randomIntervalStart']} - {config['randomIntervalStop']} seconds")
     else:

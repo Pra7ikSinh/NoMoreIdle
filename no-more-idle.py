@@ -17,6 +17,7 @@ def main():
                 executeAction()
             else:
                 print(getCurrentTimestamp(), "User activity detected")
+                config['tab_count'] = 1
             lastPosition = currentPosition
 
             if config["randomMode"]:
