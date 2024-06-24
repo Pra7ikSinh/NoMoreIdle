@@ -23,6 +23,8 @@ config = {
     "rand_interval_stop": 0,
     "move_interval_seconds": 3,
     "mouse_direction": 0,
+    "change_window": False,
+    "tab_count": 1,
 }
 
 
@@ -40,7 +42,7 @@ def parse_arguments():
     parser.add_argument("-s", "--seconds", type=int, help="Idle threshold in seconds. Default is 300.")
     parser.add_argument("-p", "--pixels", type=int, help="Pixels to move the mouse. Default is 1.")
     parser.add_argument("-c", "--circular", action='store_true', help="Move mouse in a circular pattern.")
-    parser.add_argument("-m", "--mode", help="Action mode: 'keyboard', 'mouse', 'both', or 'scroll'. Default is 'mouse'.")
+    parser.add_argument("-m", "--mode", help="Action mode: 'keyboard', 'mouse', 'both', 'scroll', or 'changeWindow'. Default is 'mouse'.")
     parser.add_argument("-r", "--random", type=int, nargs=2, help="Random interval range in seconds (start stop).")
 
     args = parser.parse_args()
@@ -72,6 +74,8 @@ def parse_arguments():
         config["press_shift_key"] = config["move_mouse"] = True
     elif mode == "scroll":
         config["scroll_action"] = True
+    elif mode == "changeWindow":
+        config["change_window"] = True
     else:
         config["move_mouse"] = True
 
@@ -88,6 +92,8 @@ def print_configuration():
     if config["move_mouse"]:
         movement_type = "circularly" if config["mouse_direction_delta"] == 1 else "diagonally"
         print(get_current_timestamp(), f"Mouse movement enabled: {config['pixels_to_move']} pixels {movement_type}")
+    if config["change_window"]:
+        print(get_current_timestamp(), "Change windows action enabled")
     if config["random_mode"]:
         print(get_current_timestamp(), f"Random interval enabled: {config['rand_interval_start']} - {config['rand_interval_stop']} seconds")
     else:
@@ -121,6 +127,17 @@ def press_shift():
     print(get_current_timestamp(), "Shift key pressed")
 
 
+def change_window():
+    """Simulates pressing Alt + Tab to change windows."""
+    keyboard.press(Key.alt)
+    for _ in range(config["tab_count"]):
+        keyboard.press(Key.tab)
+        keyboard.release(Key.tab)
+        time.sleep(0.1)
+    keyboard.release(Key.alt)
+    print(get_current_timestamp(), f"Alt+Tab pressed {config['tab_count']} time(s) to change windows")
+    config["tab_count"] += 1
+
 def execute_action():
     """Executes the configured action to simulate user activity."""
     print(get_current_timestamp(), "Simulating user activity")
@@ -130,6 +147,8 @@ def execute_action():
         perform_scroll()
     if config["press_shift_key"]:
         press_shift()
+    if config["change_window"]:
+        change_window()
 
 
 def main():
@@ -143,7 +162,8 @@ def main():
                 execute_action()
             else:
                 print(get_current_timestamp(), "User activity detected")
-            last_position = current_position
+                last_position = current_position
+                config["tab_count"] = 1
 
             if config["random_mode"]:
                 sleep_time = random.randint(config["rand_interval_start"], config["rand_interval_stop"])
