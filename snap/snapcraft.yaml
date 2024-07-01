@@ -9,7 +9,7 @@ grade: stable
 
 apps:
   no-more-idle:
-    command: bin/no-more-idle
+    command: usr/local/bin/no-more-idle
     plugs: 
       - network
       - network-bind
