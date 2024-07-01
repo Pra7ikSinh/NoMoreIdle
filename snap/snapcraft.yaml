@@ -9,7 +9,7 @@ grade: stable
 
 apps:
   no-more-idle:
-    command: usr/local/bin/no-more-idle
+    command: python3 $SNAP/no-more-idle.py
     plugs: 
       - network
       - network-bind
