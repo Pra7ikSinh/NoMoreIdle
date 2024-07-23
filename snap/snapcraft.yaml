@@ -7,15 +7,6 @@ base: core20
 confinement: strict
 grade: stable
 
-apps:
-  no-more-idle:
-    command: python3 $SNAP/no-more-idle.py
-    plugs: 
-      - network
-      - network-bind
-      - x11
-      - wayland
-
 parts:
   no-more-idle:
     plugin: python
@@ -25,3 +16,14 @@ parts:
       - python3-pip
     python-packages:
       - pynput
+
+apps:
+  no-more-idle:
+    command: python3 $SNAP/no-more-idle.py
+    plugs: 
+      - network
+      - network-bind
+      - x11
+      - wayland
+
+
