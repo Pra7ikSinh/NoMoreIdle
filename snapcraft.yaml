@@ -10,7 +10,7 @@ base: core18
 parts:
   copy-stuff:
     plugin: dump
-    source: ./src
+    source: ./no-more-idle
   keep-presence:
     plugin: python
     python-version: python3
