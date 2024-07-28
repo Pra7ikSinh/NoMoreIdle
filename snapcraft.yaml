@@ -5,20 +5,20 @@ description: |
   A powerful Python script designed to prevent your computer from going idle. This script simulates user activity by moving the mouse, scrolling, or pressing keys at set intervals. It is ideal for keeping your system active during extended periods of inactivity.
 grade: stable
 confinement: strict
-base: core20
+base: core18
 
 parts:
-  no-more-idle:
-     plugin: python
-      python-version: python3
-      source: .
+  copy-stuff:
+    plugin: dump
+    source: ./src
+  keep-presence:
+    plugin: python
+    python-version: python3
+    source: .
   dlib:
     plugin: python
     python-packages:
       - pynput
-  copy-stuff:
-    plugin: dump
-    source: ./no-more-idle
 
 apps:
   no-more-idle:
