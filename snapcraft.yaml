@@ -23,7 +23,7 @@ parts:
     source: ./no-more-idle
 
 apps:
-  keep-presence:
-    command: python3 $SNAP/keep-presence.py
+  no-more-idle:
+    command: python3 $SNAP/no-more-idle.py
     plugs:
       - x11
