@@ -10,7 +10,6 @@ base: core20
 parts:
   no-more-idle:
     plugin: python
-    python-version: python3
     source: .
     stage-packages:
       - python3
